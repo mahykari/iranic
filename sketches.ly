@@ -68,26 +68,44 @@
   }
 >>
 
+
+winger = { fis8 h a }
+keeper = { c8 c c }
+
 \new PianoStaff <<
   \new Staff {
     \clef bass \time 6/8 \relative {
       \partial 4. fis8 h a | r2. | r4 fis8 fis h a |
-      r2. | r2. | fis8 h a r4. | fis8 h a a d c | r4. |
-      a8 d c r4.
+      r2. | r2. | \repeat unfold 3 { \winger r4. } | 
+      \retrograde { \winger r4. } | 
+      \retrograde \winger \transpose fis a \retrograde \winger | 
+      r4. |
+      \repeat unfold 3 { \transpose fis a \winger r4. } |
+      r4. r4. r4. | 
+      \clef treble \repeat unfold 4 { r4. r4 \grace { a'16 } gis8 }
+      
     }
   }
   \new Dynamics {
-    s8\f s4 | s2.\> | s16 s16\! s8 s8\f s4. |
-    \once \override Hairpin.minimum-length=20
-    s2.\>  | s2. | s2.\!\mp
+    \textLengthOn
+    \tempo "Allegro moderato" 
+    s4.\f | s2.\> | 
+    s16 s16\! s8 s8\f s4. |
+    \once \override Hairpin.minimum-length=20 
+    s2.\>  | s2. | 
+    \tempo "animato" s2.\mp | s2.*3 | s4. s4.\sfz | s4.\f |
+    s2.\mp | s2.*2 | s4.\f s4. s4. | 
   }
   \new Staff {
     \clef bass \relative {
       r4. | c,2.->-\tweak minimum-length 15 ( |
-      c4.) r4. | c2.-> ( |
-      c2.) |
-      r4. c8 c c | r4. gis''8 r4 | \time 3/8 c,,8 c c |
-      \time 6/8 r4. gis'8 gis gis
+      c4.) r4. | c2.-> ( | c2.) |
+      \repeat unfold 3 { r4. \keeper } | 
+      \retrograde { r4. \keeper } | 
+      r4. gis'8 r4 | \time 3/8 c,8 c c |
+      \time 6/8 \repeat unfold 3 { r4. \transpose c gis, \keeper } |
+      \time 9/8 \keeper \transpose c gis, \keeper \keeper |
+      \time 6/8 \repeat unfold 4 { c4\sustainOn  \grace { fisis16 } gis8 cis4. } |
     }
   }
 >>

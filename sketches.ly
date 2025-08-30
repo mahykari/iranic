@@ -87,7 +87,6 @@ keeper = { c8 c c }
     }
   }
   \new Dynamics {
-    \textLengthOn
     \tempo "Allegro moderato" 
     s4.\f | s2.\> | 
     s16 s16\! s8 s8\f s4. |

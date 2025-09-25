@@ -22,6 +22,7 @@ ringer = { b8.( e16 cis!8-.) }
 ffRisoluto = \markup { \dynamic ff \normal-text { risoluto } }
 ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
 
+
 \new PianoStaff <<
   \new Staff = "up" {
     \clef bass \time 6/8 \relative {
@@ -135,7 +136,63 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
       <fis fis'>4. r4 <e e'>8 \bar "||"
       \time 4/4 <fis fis'>4. <g g'>16 <a a'>
         <g g'>8 <fis fis'> <e e'> <d d'> |
-      <e e'>4 <b b'>2.
+      <e e'>4 <b b'>2 r4\fermata   
+    }
+  }
+>>
+
+\new PianoStaff <<
+  \new Staff = "up" {
+    \clef treble \time 4/4 \relative {
+      d''4.^\markup { langsam aufkommend }
+        ( e16 f e8 d c h | c4 h?8 c16 d c2 ) |
+      g4.( c16 h c8 h c d | b8. c16 b8 a16 g a2 ) |
+      <<
+        { \voiceOne d4.( e16 f e8 d c h | c4 h?8 c16 d c2 ) }
+        \new Voice { \voiceTwo s1 | as2 g }
+      >>
+      g4. c16 h c8 e16 g c8 ges16 es |
+      b8. cis16 b8. e16 a8. b16 a8. cis16 |
+      d4. e8 d2 |
+      \ottava 1 d2
+        \temporary \override NoteColumn.X-offset = #'-8
+        \temporary \override NoteHead.extra-spacing-width = #'( 1 . 2 )
+        \grace { es16 d cis e g b e }
+        \revert NoteColumn.X-offset d2 
+        
+    }
+  }
+  
+  \new Dynamics {
+    s1\p
+  }
+
+  \new Staff = "down" {
+    \clef treble \relative {
+      \repeat unfold 2 <f' a>8 \repeat unfold 4 <f as> <e as!> <e as> |
+      \repeat unfold 4 <e g> \repeat unfold 4 <dis fis> |
+      \repeat unfold 4 <c f>
+        \repeat unfold 2 <cis fis>
+        \repeat unfold 2 <d fis> |
+      \repeat unfold 4 <e fis> \repeat unfold 4 <dis f> |
+      \clef bass <<
+        { \voiceOne \repeat unfold 2 <gis, e'>
+            \repeat unfold 4 <fisis dis'>
+            \repeat unfold 2 <fis dis'> |
+          <f! d'!> \repeat unfold 3 <f d'>
+            \repeat unfold 4 <e d'>
+        }
+        \new Voice { \voiceTwo c2 s | s a' }
+      >> |
+      \repeat unfold 4 <es as des>8
+      \repeat unfold 4 <e a d> |
+      \improvisationOn
+      \repeat unfold 8 <fis h e> |
+      \improvisationOff
+      \repeat unfold 2 {
+        \repeat unfold 4 <ges ces fes>
+        \repeat unfold 4 <f b es>
+      }
     }
   }
 >>

@@ -110,10 +110,8 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
       <a, a'>8.\sustainOn <gis gis'>16 <a a'>8
         <a a'>8. <gis gis'>16 <a a'>8 |
       <a a'>8. <gis gis'>16 <a a'>8\sustainOff
-      \tuplet 4/3 {
-        \set tieWaitForNote = ##t gis!8 ~ fis' ~ e'! ~ dis' ~
-      } |
-      <gis,,,! ~ fis'! ~ e'! ~ dis'!>2. ~ | <gis! fis'! e'! dis'!>2. |
+        \set tieWaitForNote = ##t gis!8 ~ fis' ~ e'! ~
+      <gis,,! ~ fis'! ~ e'! ~ dis'!>2. ~ | <gis! fis'! e'! dis'!>2. |
       \once \override NoteHead.extra-spacing-width = #'(0 . 8)
       <fis' fis'>2.\fermata |
       \grace { f16_[gis a]  h^[c es] f_[gis a] h^[c es] }

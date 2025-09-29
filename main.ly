@@ -61,9 +61,9 @@ subitoPDynamic = #(make-dynamic-script subitoP)
         fisis32^\markup { \tiny r.h. }^[e cis ais]
       }
       s2. |
-      f'8^\markup { non legato } c f \transpose fis c' \winger |
-      \repeat unfold 8 \transpose fis c' \winger |
-      \transpose fis c' \winger heses,8 as' es |
+      f'8^\markup { non legato } c f f c es |
+      \repeat unfold 8 { f c es } |
+      f c es heses8 as' es |
       heses8 as' es heses8 as' es |
       a! h! c d e f | g a h c b, g' |
       \repeat unfold 13 { c b, g' }

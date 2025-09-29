@@ -152,16 +152,31 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
       g4. c16 h c8 e16 g c8 ges16 es |
       b8. cis16 b8. e16 a8. b16 a8. cis16 |
       d4. e8 d2 |
-      \ottava 1 d2
-        \temporary \override NoteColumn.X-offset = #'-8
-        \temporary \override NoteHead.extra-spacing-width = #'( 1 . 2 )
-        \grace { es16 d cis e g b e }
-        \revert NoteColumn.X-offset d2 
-        
+      d,2
+       \temporary \override NoteHead.extra-spacing-width = #'( 0 . 1 )
+       \grace { es16 d cis e g b e }
+       \revert NoteHead.extra-spacing-width d2 |
+      <<
+        { \voiceOne \repeat unfold 8 <e,, as>8 |
+          \repeat unfold 8 <e g> }
+        \new Voice { \voiceTwo h?1 | des }
+      >>
+      \repeat unfold 4 <f g>8 \repeat unfold 4 <f as> |
+      \oneVoice <f as> r8 r2. |
+      r8 <c f> <c f> <c fis> <c fis> <c g'> <c g'> <c gis'> |
+      <c gis'> r8 r2. |
+      \set tieWaitForNote = ##t
+      \temporary \override NoteHead.extra-spacing-width = #'( 0 . 2 )
+      r2 \grace { c16 ~ gis' ~ c ~ gis' _~ c _~ }
+      <c,, gis' c gis' c g'>2
+      \revert NoteHead.extra-spacing-width |
     }
   }
   
   \new Dynamics {
+    s1\p | s1*3 |
+    s1\mp | s1*2 |
+    s1\cresc | s1\endcresc \f |
     s1\p
   }
 
@@ -184,13 +199,153 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
       >> |
       \repeat unfold 4 <es as des>8
       \repeat unfold 4 <e a d> |
-      \improvisationOn
-      \repeat unfold 8 <fis h e> |
-      \improvisationOff
+      \repeat unfold 2 <ges b e>
+        \repeat unfold 4 <f b e>
+        \repeat unfold 2 <ases b geses'> |
+      \repeat unfold 4 <ges ces fes>
+        \repeat unfold 4 <f b es> |
+      \repeat unfold 4 <ges ces fes>
+        \repeat unfold 3 <f b es>
+        <f b es>^\markup { \tiny r.h. } |
+      f,4. g16 as f2 |
+      f4. ges16 as  f2 |
+      f4~ f16 g as g fis2->~ |
+      fis4 fis h4.. a16 |
+      a1 | r4 fis h4. a8 | a1
+    }
+  }
+>>
+
+subitoP = \markup { \normal-text { subito } \dynamic p }
+subitoPDynamic = #(make-dynamic-script subitoP)
+
+\new PianoStaff <<
+  \new Staff = "up" {
+    \time 6/8 \relative {
+      \ottava 1
+      r8 c'''4 des8 c4 |
+      r8 b4 c8 b4 |
+      r8 as4 b8 g4 |
+      as8 b c8 ~ c8 c4 |
+      \ottava 0
+      r8 c4 des8 c4 |
+      r8 b4 c8 b4 |
+      r8 as4 b8 g4 |
+      as8 b c8 ~ c8 c4 |
+      r2. | r4. \transpose c c' \winger |
+      \repeat unfold 2 \transpose c c' \winger |
+      gis,8 gis gis r4. |
+      r2. | r2. |
+      \shape #'(() ((0 . 1) (0 . 1) (0 . 0) (0 . -1))) Slur
+      f8( g4 g4 as8 |
+      h as4 g\prall f8 |
+      e f4 g as8 |
+      h as4 g4 ) r8 | r2. |
+      gis,8 a' dis, gis, a' dis, |
+      gis,-> a' dis, a-> a' dis, |
+      his-> a' dis, d-> a' dis, |
+      cis a' dis, cis a' dis,
+        \repeat unfold 3 <cis dis a'> |
+      \repeat unfold 18 <cis dis a'> |
+      \repeat unfold 12 <cis dis a'> |
+      \repeat unfold 3 <cis dis a'> r2. |
+      \repeat unfold 2 { a''8 b cis es d4 es8 d cis } |
+      \repeat unfold 2 { a8 b cis es d4 es8 d cis es d4 } |
+      \repeat unfold 12 <a cis es b'>8 |
+      \override Glissando.style = #'zigzag
+        \once \override NoteHead.extra-spacing-width = #'(0 . 24)
+        b4.\glissando \change Staff = "down"
+        b,,,,\fermata
+    }
+  }
+
+  \new Dynamics {
+    \tempo "weich, quasi träumerisch" s2.\p |
+    s2.*8 |
+    s4. s4.\cresc |
+    s2. |
+    s2.\endcresc\f |
+    s2. |
+    \once \override DynamicText.self-alignment-X = #-0.5
+    s2.\subitoPDynamic |
+    s2.*5 |
+    s2.\mf |
+    s2.*2 |
+    \time 9/8 s2. \tempo \markup { energetico } \bar "!" s4. |
+    s2. \bar "!" s4. |
+    s2. \bar "!" s4. |
+    \time 6/8 s2.*2 |
+    \time 9/8 s4. \bar "!" s2. |
+    s2. \bar "!" s4. |
+    s2. \bar "!" s4. |
+    \time 6/8 s2.*4 |
+    s2.\ffRisolutoDynamic
+  }
+
+  \new Staff = "down" {
+    \clef bass \time 6/8 \relative {
+      des,2.---. ~ | \repeat unfold 2 { des2. ~ } | des2. |
+      \clef treble r4. e'''4. | r4. dis4. | r4. c4. | r4. h4. |
+      \clef bass r4. \transpose c c \winger |
+      \repeat unfold 4 \transpose c c \winger |
+      gis,8 gis gis gis-> gis-> dis-> |
+      gis,-> a' dis, gis, a' dis, |
+      \repeat unfold 10 { gis, a' dis, } |
+      \slurDashed
+        gis, a' dis,
+        \shape #'((0 . -6) (-1 . 2) (0 . 1) (0 . 0)) Slur
+        \once \override NoteHead.extra-spacing-width = #'(0 . 12)
+        a'(
+        \noBeam \change Staff = "up" dis a' ) |
+      \change Staff = "down"
+      r4. r4 <f,,, f'>8 |
+      <g g'>4. r4 <f f'>8 |
+      <g g'>4. r4 <f f'>8 |
+      <ges ges'>4. r4. r4. |
       \repeat unfold 2 {
-        \repeat unfold 4 <ges ces fes>
-        \repeat unfold 4 <f b es>
-      }
+        <f f'>8 <ges ges'> <a a'> <ces ces'> <b b'>4
+        <ces ces'>8 <b b'> <a a'>
+      } |
+      <f f'>8 <ges ges'> <a a'> <ces ces'> <b b'>4 |
+      <ces ces'>8 <b b'> <a a'> <ces ces'>8 <b b'>4 |
+      r4. \clef treble
+        \repeat unfold 6 { <g''' cis es fis>8 } |
+      \repeat unfold 18 { <g cis es fis>8 } |
+      \repeat unfold 24 { <g cis es fis>8 } |
+      \repeat unfold 12 { <g cis es fis>8 } |
+      \clef bass s2.
+    }
+  }
+>>
+
+\new PianoStaff <<
+  \new Staff = "up" {
+    \clef bass \relative {
+      c'8 e dis c h a r4. |
+      { \stemUp c,8 e dis} c h a r4. |
+      \clef treble \time 6/8 r4. r4
+        \override TupletBracket.transparent = ##t
+        \override TupletNumber.transparent = ##t
+        \tuplet 3/2 {
+          \ottava #1
+          \stemDown es''''16\noBeam_\markup { \tiny l.h. } \stemUp g h
+        } |
+      e8^! r4 r4. \ottava #0 |
+    }
+  }
+
+  \new Dynamics {
+    \tempo "quasi scherzoso" s2.\f s4. |
+    s2. s4. | s2. |
+    s2. \bar "|." |
+  }
+
+  \new Staff = "down" {
+    \clef bass \time 9/8 \relative {
+      r2. fis!8-> fis-> fis-> |
+      r2. f,!8-> f!-> f!-> |
+      r4. \ottava #-1 es,4. ~ |
+      es2. \ottava #0
     }
   }
 >>

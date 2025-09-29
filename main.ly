@@ -22,7 +22,11 @@ ringer = { b8.( e16 cis!8-.) }
 ffRisoluto = \markup { \dynamic ff \normal-text { risoluto } }
 ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
 
+subitoP = \markup { \normal-text { subito } \dynamic p }
+subitoPDynamic = #(make-dynamic-script subitoP)
 
+\score {
+{
 \new PianoStaff <<
   \new Staff = "up" {
     \clef bass \time 6/8 \relative {
@@ -82,7 +86,7 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
     s2.*8 | s4. s4. s4. | s2.*4 | s2.\ff | s4. s4.\mf |
     s2.*3 | s2.\mp | s2.*6 | s2.\mp \cresc |
     s4. s4\endcresc s8\ffRisolutoDynamic |
-    s2.*8 | \tempo "moderato" s1 |
+    s2.*8 | \tempo "moderato" s1 | s1
   }
   \new Staff = "down" {
     \clef bass \relative {
@@ -216,9 +220,6 @@ ffRisolutoDynamic = #(make-dynamic-script ffRisoluto)
   }
 >>
 
-subitoP = \markup { \normal-text { subito } \dynamic p }
-subitoPDynamic = #(make-dynamic-script subitoP)
-
 \new PianoStaff <<
   \new Staff = "up" {
     \time 6/8 \relative {
@@ -349,3 +350,4 @@ subitoPDynamic = #(make-dynamic-script subitoP)
     }
   }
 >>
+}}

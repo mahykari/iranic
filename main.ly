@@ -2,6 +2,11 @@
 \language "deutsch"
 
 \header {
+  title = \markup { \vspace #'2 \fontsize #6 "Iranisch" }
+  dedication = \markup {
+    \italic "den guten Tagen meiner Heimat gewidmet"
+  }
+  composer = "Mahyar Karimi"
   tagline = ##f
 }
 
@@ -11,8 +16,14 @@
      #:music "beethoven"
      #:brace "beethoven"
      #:roman "old music standard"
-     #:factor (/ staff-height pt 20)
+     #:factor (/ staff-height pt 22)
    ))
+
+  left-margin = 1\in
+  right-margin = 1\in
+  top-margin = 1\in
+  bottom-margin = 1\in
+
 }
 
 winger = { fis8 h a }

@@ -350,7 +350,8 @@ codaup = {
         \ottava #1
         \stemDown es''''16\noBeam_\markup { \tiny l.h. } \stemUp g h
       } |
-    e8^! r4 r4. \ottava #0 |
+    << { \voiceOne e8^! } \new Voice { \voiceTwo g,8 } >>
+      \oneVoice r4 r4. \ottava #0 |
   }
 }
 

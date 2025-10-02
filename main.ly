@@ -72,9 +72,10 @@ sectionAup = {
     s2. |
     f'8^\markup { non legato } c f f c es |
     \repeat unfold 8 { f c es } |
-    f c es heses8 as' es |
-    heses8 as' es heses8 as' es |
+    f c es \repeat unfold 3 { as heses, es } |
+    \temporary \override NoteHead.extra-spacing-width = #'(-1 . 2)
     a! h! c d e f | g a h c b, g' |
+    \revert NoteHead.extra-spacing-width
     \repeat unfold 13 { c b, g' }
     \temporary \override NoteHead.extra-spacing-width = #'(-4 . 4)
     c^\markup { momentan streckend }  b, g' |
@@ -99,8 +100,8 @@ sectionAdyn = {
   s2.\mp | s2.*2 | s4.\f s4. s4. |
   s2.*8 | s4. s4. s4. | s2.*4 | s2.\ff | s4. s4.\mf |
   s2.*3 | s2.\mp | s2.*6 | s2.\mp \cresc |
-  s4. s4\endcresc s8\ffRisolutoDynamic |
-  s2.*8 | \tempo "moderato" s1 | s1
+  s4. s4.\endcresc\ffRisolutoDynamic |
+  s2.*8 | \tempo "Moderato" s1 | s1
 }
 
 sectionAdown = {
@@ -172,20 +173,22 @@ sectionBup = {
     d4. e8 d2 |
     d,2
      \temporary \override NoteHead.extra-spacing-width = #'( 0 . 1 )
-     \grace { es16 d cis e g b e }
+     \grace { es16 d cis e gis b e }
      \revert NoteHead.extra-spacing-width d2 |
     <<
       { \voiceOne \repeat unfold 8 <e,, as>8 |
         \repeat unfold 8 <e g> }
       \new Voice { \voiceTwo h?1 | des }
-    >>
+    >> \oneVoice
     \repeat unfold 4 <f g>8 \repeat unfold 4 <f as> |
-    \oneVoice <f as> r8 r2. |
+    <f as> r8 r2. |
     r8 <c f> <c f> <c fis> <c fis> <c g'> <c g'> <c gis'> |
     <c gis'> r8 r2. |
     \set tieWaitForNote = ##t
-    \temporary \override NoteHead.extra-spacing-width = #'( 0 . 2 )
+    \temporary \override NoteHead.extra-spacing-width = #'( -2 . 1 )
     r2 \grace { c16 ~ gis' ~ c ~ gis' _~ c _~ }
+    \revert NoteHead.extra-spacing-width
+    \temporary \override NoteHead.extra-spacing-width = #'( -2 . 8 )
     <c,, gis' c gis' c g'>2
     \revert NoteHead.extra-spacing-width |
   }
